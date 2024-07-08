@@ -15,7 +15,7 @@ module.exports = defineConfig({
   /* Run tests in files in parallel */
   timeout: 30 * 1000,
   expect: {
-    timeout:5 * 1000
+    timeout:5 * 1000,
   },
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
@@ -26,7 +26,9 @@ module.exports = defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     
       browserName: 'chromium',
-      headless: false
+      headless: false,
+      screenshot : 'on',
+      trace : 'on',
       
     },
 

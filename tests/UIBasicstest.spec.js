@@ -7,7 +7,7 @@ test('page playwright test', async ({page})=>
         await expect(page).toHaveTitle("Google")
     });
 
-test. only('Browser Context Playwright test', async({browser})=>
+test('Browser Context Playwright test', async({browser})=>
 {
     const context = await browser.newContext();
     const page = await context.newPage();
