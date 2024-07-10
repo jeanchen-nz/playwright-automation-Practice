@@ -65,7 +65,7 @@ test('Child window handling', async({browser})=>
 
 test.only('Client App Login', async({page})=>
     {
-        const productName = 'Zara Coat 4';
+        const productName = 'ZARA COAT 3';
         const products = page.locator(".card-body");
         await page.goto("https://rahulshettyacademy.com/client");
         await page.locator("#userEmail").fill("snowmoomo@gmail.com");
@@ -85,4 +85,26 @@ test.only('Client App Login', async({page})=>
             }
         };
     
+            await page.locator("[routerlink*='cart']").click();
+            await page.locator("div li").first().waitFor();
+            //await page.waitForLoadState("networkidle/domcontentloaded"); wait for opening a new page 
+            const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
+            expect(bool).toBeTruthy();
+            await page.locator("text=Checkout").click();
+
+            await page.locator("[placeholder*='Country']").pressSequentially("new");
+            const dropdown = page.locator(".ta-results");
+            await dropdown.waitFor();
+            const optionsCount = await dropdown.locator("button").count();
+            for(let i=0;i<optionsCount;++i)
+            {
+                const text = await dropdown.locator("button").nth(i).textContent();
+                if(text === " New Zealand")
+                    {await dropdown.locator("button").nth(i).click();
+                    break;
+                    }
+            }
+            await page.pause();
+
+
     });
