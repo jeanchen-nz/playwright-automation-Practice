@@ -1,4 +1,5 @@
 const {test,expect} = require("@playwright/test");
+const { CalendarPage } = require("../Pages/CalendarPage");
 
 test("Calendar validations", async({page}) =>
 {
@@ -8,9 +9,10 @@ test("Calendar validations", async({page}) =>
     const expectedList = [monthNumber,date,year];
 
     await page.goto("https://rahulshettyacademy.com/seleniumPractise/#/offers");
-    await page.locator(".react-date-picker__inputGroup").click();
-    await page.locator(".react-calendar__navigation__label").click();
-    await page.locator(".react-calendar__navigation__label").click();
+    const calendarPage = new CalendarPage(page);
+    await calendarPage.clickDeliveryDate();
+    await calendarPage.clickXXLabel();
+    await calendarPage.clickXXLabel();
     await page.getByText(year).click();
     await page.locator(".react-calendar__year-view__months__month").nth(Number(monthNumber) - 1).click();
     await page.locator("//abbr[text()='" + date + "']").click();
