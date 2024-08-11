@@ -42,3 +42,4 @@ test('Place the order', async ({ page }) =>
     expect(response.orderId.includes(orderIdDetails)).toBeTruthy();
 
 });
+

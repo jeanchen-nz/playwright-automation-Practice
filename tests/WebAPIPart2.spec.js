@@ -81,7 +81,7 @@ test('Client App Login', async()=>
 
     });
 
-test('Test case 2'), async() =>
+test('Test case 2', async() =>
 {
         const productName = 'ZARA COAT 3';
         const page = await webContext.newPage();
@@ -89,4 +89,4 @@ test('Test case 2'), async() =>
         const products = page.locator(".card-body");
         const titles = await page.locator(".card-body b").allTextContents();
         console.log(titles);
-}
+});
