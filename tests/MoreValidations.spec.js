@@ -1,7 +1,6 @@
-const {test,expect} = require('@playwright/test')
+const { test, expect } = require('@playwright/test')
 
-test("Popup validation",async({page})=>
-{
+test("Popup validation", async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     // await page.goto("https://google.com");
     // await page.goBack();
@@ -18,8 +17,14 @@ test("Popup validation",async({page})=>
     const textCheck = await framesPage.locator(".text h2").textContent();
     console.log(textCheck.split(" ")[1]);
 
-    
 
+});
 
-
+test.only("Screenshot & Visual comparision", async ({ page }) => {
+    await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
+    await expect(page.locator("#displayed-text")).toBeVisible();
+    await page.locator("#displayed-text").screenshot({path:'partialScreenshot.png'});
+    await page.locator("#hide-textbox").click();
+    await page.screenshot({ path: 'screenshot.png' });
+    await expect(page.locator("#displayed-text")).toBeHidden();
 });
