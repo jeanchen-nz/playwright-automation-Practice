@@ -20,11 +20,16 @@ test("Popup validation", async ({ page }) => {
 
 });
 
-test.only("Screenshot & Visual comparision", async ({ page }) => {
+test("Screenshot & Visual comparision", async ({ page }) => {
     await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
     await expect(page.locator("#displayed-text")).toBeVisible();
     await page.locator("#displayed-text").screenshot({path:'partialScreenshot.png'});
     await page.locator("#hide-textbox").click();
     await page.screenshot({ path: 'screenshot.png' });
     await expect(page.locator("#displayed-text")).toBeHidden();
+});
+
+test.only("vivual", async ({ page }) => {
+    await page.goto("http://google.com/");
+    expect(await page.screenshot()).toMatchSnapshot('landing.png');
 });
